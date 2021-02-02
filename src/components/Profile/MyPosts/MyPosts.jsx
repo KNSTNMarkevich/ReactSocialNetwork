@@ -4,6 +4,10 @@ import Post from './Post/Post';
 
 
 const MyPosts = (props) => {
+
+    const postElements = props.posts
+        .map( p => ( <Post message={p.message} likes={p.likesCount}/>));
+
     return (
         <div className={style.postsBlock}>
             <h3>My Posts</h3>
@@ -16,7 +20,7 @@ const MyPosts = (props) => {
                 </div>
             </div>
             <div className={style.posts}>
-                {props.postElements}
+                {postElements}
             </div>
         </div>
     );

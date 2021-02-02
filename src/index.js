@@ -3,19 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Post from "./components/Profile/MyPosts/Post/Post";
-import DialogItem from "./components/Dialogs/DialogItem/DialogItem";
-import Message from "./components/Dialogs/Message/Message";
 
 const posts = [
     {id: 1, message: 'Hello world!', likesCount: 15},
     {id: 2, message: 'React Education', likesCount:20},
 ];
-
-const postElements = posts
-    .map( p => ( <Post message={p.message} likes={p.likesCount}/>));
-
-
 
 const dialogs = [
     {id: 1, name: 'Bozhok'},
@@ -26,8 +18,7 @@ const dialogs = [
     {id: 6, name: 'Shendo'},
 ];
 
-const dialogsElements = dialogs
-    .map( dialog => (<DialogItem name={dialog.name} id={dialog.id}/>))
+
 
 
 
@@ -37,15 +28,14 @@ const messages = [
     {id: 3, message: 'Slim Shady!'},
 ];
 
-const messagesElements = messages
-    .map( message => ( <Message message={message.message} id = {message.id}/>))
+
 
 
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <App postElements = {postElements} dialogsElements = {dialogsElements} messagesElements = {messagesElements}/>
+    <App posts = {posts} dialogs = {dialogs} messages = {messages}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
