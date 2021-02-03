@@ -12,3 +12,7 @@
 .item a.active{
     color: gold;
 }
+
+.sideBar {
+    padding-top: 100px;
+}
