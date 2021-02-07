@@ -10,10 +10,11 @@ import News from "./components/News/News";
 
 
 const App = (props) => {
+    debugger;
     return (
             <div className='app-wrapper'>
                 <Header/>
-                <Navbar state={props.state.sidebar}/>
+                <Navbar sidebar={props.state.sidebar}/>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs'
                            render={() => <Dialogs
