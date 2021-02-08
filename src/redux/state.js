@@ -1,3 +1,9 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+
+
 let store = {
 
     _state: {
@@ -72,7 +78,7 @@ let store = {
     // },
 
     dispatch(action){
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             let newPost = {
                 id: 5,
                 message: this._state.profilePage.newPostText,
@@ -82,11 +88,11 @@ let store = {
             this._state.profilePage.newPostText = '';
             this._subscrbier(this._state);
 
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText;
             this._subscrbier(this._state);
 
-        } else if (action.type === 'ADD-MESSAGE') {
+        } else if (action.type === ADD_MESSAGE) {
             let newMessage = {
                 id: 4,
                 message: this._state.dialogsPage.newMessageText
@@ -95,12 +101,30 @@ let store = {
             this._state.dialogsPage.newMessageText = '';
             this._subscrbier(this._state)
 
-        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+        } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
             this._state.dialogsPage.newMessageText = action.newMessage;
             this._subscrbier(this._state);
         }
     }
 
+}
+
+export const addPostActionCreator = () => {
+    return {
+        type: ADD_POST
+    }
+}
+
+export const updateNewPostTextActionCreator = (text) => {
+    return {type: UPDATE_NEW_POST_TEXT, newText: text}
+}
+
+export const updateNewMessageTextActionCreator = (text) => {
+    return  {type: UPDATE_NEW_MESSAGE_TEXT, newMessage: text}
+}
+
+export const addMessageActionCreator = () => {
+    return {type: ADD_MESSAGE}
 }
 
 
