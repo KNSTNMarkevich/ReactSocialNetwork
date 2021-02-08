@@ -16,7 +16,11 @@ const Dialogs = (props) => {
 
     let onMessageChange = () => {
         let text = newMessage.current.value;
-        props.updateNewMessageText(text)
+        props.dispatch({type: 'UPDATE-NEW-MESSAGE-TEXT', newMessage: text})
+    }
+
+    let addMessage = () => {
+        props.dispatch({type: 'ADD-MESSAGE'})
     }
 
     return (
@@ -33,7 +37,7 @@ const Dialogs = (props) => {
                           onChange={onMessageChange}
                           value={props.dialogsPage.newMessageText}
                 />
-                <button onClick={props.addMessage}>Add Message</button>
+                <button onClick={addMessage}>Add Message</button>
             </div>
             </div>
         </div>
