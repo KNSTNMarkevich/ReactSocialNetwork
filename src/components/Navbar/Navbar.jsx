@@ -23,7 +23,7 @@ const Navbar = (props) => {
                 <NavLink to='/settings' activeClassName={style.active}>Settings</NavLink>
             </div>
             <div className={style.sideBar}>
-                <SideBar state={props.sidebar}/>
+                <SideBar /*state={props.sidebar} */ />
             </div>
         </nav>
     );

@@ -5,17 +5,17 @@ import SideBarFriends from "./SideBarFriends/SideBarFriends";
 
 const SideBar = (props) => {
 
-    const friendsElements = props.state.friends
-        .map( p => ( <SideBarFriends name={p.name} surname={p.surname} status={p.status}/>));
+    // const friendsElements = props.state.friends
+    //     .map( p => ( <SideBarFriends name={p.name} surname={p.surname} status={p.status}/>));
 
     return (
         <div>
             <div>
                 Friends
             </div>
-            <div>
-                {friendsElements}
-            </div>
+            {/*<div>*/}
+            {/*   {friendsElements} */}
+            {/*</div>*/}
         </div>
     );
 }
