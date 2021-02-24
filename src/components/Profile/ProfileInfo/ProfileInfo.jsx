@@ -18,8 +18,8 @@ const ProfileInfo = (props) => {
                 <div className={style.avatar}>
                     <img src={props.profile.photos.large}/>
                 </div>
-                <div>
-                    <div className={style.descriptionBlock}>
+                <div className={style.descriptionBlock}>
+                    <div >
                         {props.profile.fullName}
                     </div>
                     <div>

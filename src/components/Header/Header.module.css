@@ -2,7 +2,19 @@
     grid-area: h;
     background-color: #66cc99;
 }
-  
-.header img {
+
+.headerContainer{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.headerContainer img {
       width: 20px;
+}
+
+.login a {
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
 }
