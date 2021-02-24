@@ -1,3 +1,16 @@
-.descriptionBlock {
-    padding: 10px;
+.profileContainer{
+    display: flex;
+    justify-content: space-between;
 }
+
+.descriptionBlock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.avatar{
+
+}
+

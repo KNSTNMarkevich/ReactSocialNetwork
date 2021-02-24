@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import style from './ProfileInfo.module.css'
 import Preloader from "../../common/Preloader/Preloader";
-import Post from "../MyPosts/Post/Post";
-
 
 const ProfileInfo = (props) => {
 
@@ -16,16 +14,19 @@ const ProfileInfo = (props) => {
             <div>
                 <img src='https://cdn.theculturetrip.com/wp-content/uploads/2013/04/rome-e1487329583205.jpg'></img>
             </div>
-            <div className={style.descriptionBlock}>
-                <img src={props.profile.photos.large}/>
-                <span>
-                {props.profile.fullName}
-                </span>
+            <div className={style.profileContainer}>
+                <div className={style.avatar}>
+                    <img src={props.profile.photos.large}/>
+                </div>
+                <div>
+                    <div className={style.descriptionBlock}>
+                        {props.profile.fullName}
+                    </div>
+                    <div>
+                        {props.profile.aboutMe}
+                    </div>
+                </div>
             </div>
-            <div>
-                {props.profile.aboutMe}
-            </div>
-            <div></div>
         </div>
     );
 }
