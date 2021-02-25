@@ -8,7 +8,8 @@ import {
     setUsers,
     toggleIsFetching,
     unfollow
-} from "../../redux/users-reducer";
+}
+from "../../redux/users-reducer";
 import Preloader from "../common/Preloader/Preloader";
 import {usersAPI} from "../../api/api";
 
