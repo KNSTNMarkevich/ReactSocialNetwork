@@ -30,4 +30,16 @@ export const followAPI = {
 
 }
 
+export const profileAPI = {
+    getUserProfile(userId) {
+        return instance.get(`profile/${userId}`)
+            .then(response => response.data)
+    }
+}
+export const authAPI = {
+    getAuthUserProfile() {
+        return instance.get(`auth/me`)
+            .then(response => response.data)
+    }
+}
 
