@@ -8,11 +8,10 @@ import {
     setUsers, toggleFollowingInProgress,
     toggleIsFetching,
     unfollow
-}
-    from "../../redux/users-reducer";
+} from "../../redux/users-reducer";
 import Preloader from "../common/Preloader/Preloader";
-import {usersAPI} from "../../api/api";
-
+import {compose} from "redux";
+import withAuthRedirect from "../hok/withAuthRedirect";
 class UsersContainer extends React.Component {
 
     componentDidMount() {
@@ -55,7 +54,10 @@ let mapStateToProps = (state) => {
     }
 }
 
+export default compose(
+    connect(mapStateToProps, {
+        follow, unfollow, setUsers,
+        setCurrentPage,setTotalUsersCount, toggleIsFetching, getUsers: getUsersThunkCreator }),
+    withAuthRedirect
+)(UsersContainer);
 
-export default connect(mapStateToProps, {
-    follow, unfollow, setUsers,
-    setCurrentPage,setTotalUsersCount, toggleIsFetching, getUsers: getUsersThunkCreator })(UsersContainer);
