@@ -15,21 +15,23 @@ const ProfileInfo = (props) => {
             {/*<div>*/}
             {/*    <img src='https://cdn.theculturetrip.com/wp-content/uploads/2013/04/rome-e1487329583205.jpg'></img>*/}
             {/*</div>*/}
+            <div>
             <div className={style.profileContainer}>
                 <div className={style.avatar}>
                     <img src={props.profile.photos.large}/>
                 </div>
                 <div className={style.descriptionBlock}>
-                    <div >
+                    <div>
                         {props.profile.fullName}
                     </div>
-                    <ProfileStatus status = {'My status'}/>
-                    {/*<ProfileStatus status = {props.profile.aboutMe}/>*/}
-                    {/*<div>*/}
-                    {/*    {props.profile.aboutMe}*/}
-                    {/*</div>*/}
+                    <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
                 </div>
             </div>
+                <div className={style.aboutBlock}>
+                    {props.profile.aboutMe}
+                </div>
+            </div>
+
         </div>
     );
 }

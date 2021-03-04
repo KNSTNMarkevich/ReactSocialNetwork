@@ -2,6 +2,7 @@ import {profileAPI} from "../api/api";
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_STATUS = 'SET_STATUS';
 
 let initialState = {
     posts: [
@@ -9,7 +10,8 @@ let initialState = {
         {id: 2, message: 'React Education', likesCount:20},
     ],
     newPostText: '',
-    profile: null
+    profile: null,
+    status: ''
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -38,6 +40,12 @@ const profileReducer = (state = initialState, action) => {
                 profile: action.profile
             }
         }
+        case SET_STATUS: {
+            return {
+                ...state,
+                status: action.status
+            }
+        }
         default:
             return state;
     }
@@ -59,11 +67,34 @@ export const SetUserProfile = (profile) => {
     return {type: SET_USER_PROFILE, profile}
 }
 
+export const SetUserStatus = (status) => {
+    return {type: SET_STATUS, status}
+}
+
 export const getMainProfile = (userId) => {
     return (dispatch) => {
         profileAPI.getUserProfile(userId)
             .then(data => {
                 dispatch(SetUserProfile(data));
+            })
+    }
+}
+
+
+export const getUserStatus = (userId) => {
+    return (dispatch) => {
+        profileAPI.getStatus(userId)
+            .then(data => {
+                dispatch(SetUserStatus(data));
+            })
+    }
+}
+export const updateUserStatus = (status) => {
+    return (dispatch) => {
+        profileAPI.updateStatus(status)
+            .then(data => {
+                if(data.resultCode === 0)
+                dispatch(SetUserStatus(status));
             })
     }
 }

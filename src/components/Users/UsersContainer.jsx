@@ -58,6 +58,6 @@ export default compose(
     connect(mapStateToProps, {
         follow, unfollow, setUsers,
         setCurrentPage,setTotalUsersCount, toggleIsFetching, getUsers: getUsersThunkCreator }),
-    withAuthRedirect
+    //withAuthRedirect
 )(UsersContainer);
 
