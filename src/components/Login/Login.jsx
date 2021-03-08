@@ -4,7 +4,6 @@ import { Field, reduxForm } from 'redux-form'
 
 const Login = (props) => {
     const onSubmit = values => {
-        // print the form values to the console
         console.log(values)
     }
     return (
