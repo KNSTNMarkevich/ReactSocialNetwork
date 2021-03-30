@@ -1,6 +1,8 @@
 import React from "react";
 import style from './Login.module.css'
-import { Field, reduxForm } from 'redux-form'
+import {Field, reduxForm} from 'redux-form'
+import {required} from "../../utils/validators/validators";
+import {Input} from "../common/FormsControls/FormsControls";
 
 const Login = (props) => {
     const onSubmit = values => {
@@ -8,7 +10,7 @@ const Login = (props) => {
     }
     return (
         <div>
-        <div className={style.login}>LOGIN</div>
+            <div className={style.login}>LOGIN</div>
             <ReduxLoginForm onSubmit={onSubmit}/>
         </div>
     )
@@ -18,10 +20,12 @@ const LoginForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field component="input" name="login"/>
+                <Field component={Input} name="login"
+                       validate={[required]}/>
             </div>
             <div>
-                <Field component="input" name="password"/>
+                <Field component={Input} name="password"
+                       validate={[required]}/>
             </div>
             <div>
                 <Field component="input" type="checkbox" name="rememberMe"/> remember me

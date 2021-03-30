@@ -1,6 +1,6 @@
 .header {
     grid-area: h;
-    background-color: #66cc99;
+    background-color: rgb(38, 41, 49);
 }
 
 .headerContainer{
