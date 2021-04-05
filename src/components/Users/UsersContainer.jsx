@@ -5,7 +5,7 @@ import {
     follow, getUsersThunkCreator,
     setCurrentPage,
     setTotalUsersCount,
-    setUsers, toggleFollowingInProgress,
+    setUsers,
     toggleIsFetching,
     unfollow
 } from "../../redux/users-reducer";

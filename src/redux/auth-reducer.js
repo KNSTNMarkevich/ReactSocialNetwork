@@ -34,16 +34,16 @@ const authReducer = (state = initialState, action) => {
 }
 
 
-const setAuthUserData = (userId, login, email, isAuth ) => {
+const setAuthUserData = (userId, login, email, isAuth) => {
     return {type: SET_USER_DATA, data: {userId, login, email, isAuth}}
 }
 
 
 export const getAuthUserProfile = () => {
-    return (dispatch) => {
-        authAPI.getAuthUserProfile()
+  return (dispatch) => {
+       return authAPI.me()
             .then(data => {
-                if(data.resultCode === 0){
+                if (data.resultCode === 0) {
                     let {id, login, email} = data.data
                     dispatch(setAuthUserData(id, login, email, true));
                 }
@@ -51,11 +51,11 @@ export const getAuthUserProfile = () => {
     }
 }
 
-export const login = (email,password,rememberMe) => {
+export const login = (email, password, rememberMe) => {
     return (dispatch) => {
-        authAPI.login(email,password,rememberMe)
+        authAPI.login(email, password, rememberMe)
             .then(data => {
-                if(data.resultCode === 0){
+                if (data.resultCode === 0) {
                     dispatch(getAuthUserProfile())
                 } else {
                     let message = data.messages.length > 0 ? data.messages[0] : "Some Error";
@@ -69,14 +69,12 @@ export const logout = () => {
     return (dispatch) => {
         authAPI.logout()
             .then(data => {
-                if(data.resultCode === 0){
+                if (data.resultCode === 0) {
                     dispatch(setAuthUserData(null, null, null, false))
                 }
             })
     }
 }
-
-
 
 
 export default authReducer
