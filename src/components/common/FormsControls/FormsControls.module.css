@@ -7,3 +7,9 @@
 .errorMessage {
     color: red;
 }
+
+.loginError {
+    border: 1px red solid;
+    color: red;
+    padding: 5px;
+}

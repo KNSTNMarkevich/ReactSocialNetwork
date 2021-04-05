@@ -3,7 +3,7 @@ import Login from "./Login";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
-import {postAuthLogin} from "../../redux/auth-reducer";
+import {login} from "../../redux/auth-reducer";
 
 class LoginContainer extends React.Component {
 
@@ -21,7 +21,7 @@ let MapStateToProps = (state) => ({
 });
 
 export default compose(
-    connect(MapStateToProps, {postAuthLogin}),
+    connect(MapStateToProps, {login}),
     withRouter,
     //withAuthRedirect
 )(LoginContainer)

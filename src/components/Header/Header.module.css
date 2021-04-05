@@ -1,11 +1,12 @@
 .header {
     grid-area: h;
     background-color: rgb(38, 41, 49);
+    color: white;
 }
 
 .headerContainer{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     padding: 0 20px;
 }
 
