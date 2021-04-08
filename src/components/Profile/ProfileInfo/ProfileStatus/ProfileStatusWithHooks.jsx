@@ -1,14 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
-const ProfileStatusWithHoks = (props) => {
+const ProfileStatusWithHooks = (props) => {
 
-    const [editMode, setEditMode] = useState(false)
-    const [status, setStatus] = useState(props.status)
+    let [editMode, setEditMode] = useState(false)
+    let [status, setStatus] = useState(props.status)
+
+    useEffect(() => {
+            setStatus(props.status)
+    }, [props.status]);
 
     const activateEditMode = () => {
-        setEditMode({
-            status: true
-        })
+        setEditMode(true)
     }
 
     const diactivateEditMode = () => {
@@ -37,4 +39,4 @@ const ProfileStatusWithHoks = (props) => {
     );
 }
 
-export default ProfileStatusWithHoks;
+export default ProfileStatusWithHooks;
