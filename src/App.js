@@ -1,6 +1,6 @@
 import './App.css' ;
 import Navbar from './components/Navbar/Navbar';
-import {Route, withRouter} from "react-router-dom"
+import {BrowserRouter, Route, withRouter} from "react-router-dom"
 import Settings from "./components/Settings/Settings";
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
@@ -10,10 +10,11 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 import {Component} from "react";
-import {connect} from "react-redux";
+import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./redux/app-reducer";
 import Preloader from "./components/common/Preloader/Preloader";
+import store from "./redux/redux-store";
 
 class App extends Component {
     componentDidMount() {
@@ -57,5 +58,17 @@ const mapStateToProps = (state) => {
 }
 
 
-export default compose(
+let ContainerApp =  compose(
     connect(mapStateToProps, {initializeApp})(App));
+
+const SocialNetworkApp = (props) => {
+    return (
+        <BrowserRouter>
+            <Provider store={store}>
+                <ContainerApp/>
+            </Provider>
+        </BrowserRouter>
+    )
+}
+
+export default SocialNetworkApp;
