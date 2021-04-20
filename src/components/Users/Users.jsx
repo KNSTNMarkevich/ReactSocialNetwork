@@ -4,7 +4,6 @@ import User from "./User";
 
 
 let Users = (props) => {
-    debugger;
     return (
         <div>
             {

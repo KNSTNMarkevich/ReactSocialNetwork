@@ -1,11 +1,12 @@
+import React, {Suspense, lazy} from 'react';
 import './App.css' ;
 import Navbar from './components/Navbar/Navbar';
 import {BrowserRouter, Route, withRouter} from "react-router-dom"
 import Settings from "./components/Settings/Settings";
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import UsersContainer from "./components/Users/UsersContainer";
+//import DialogsContainer from "./components/Dialogs/DialogsContainer";
+//import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
@@ -15,6 +16,11 @@ import {compose} from "redux";
 import {initializeApp} from "./redux/app-reducer";
 import Preloader from "./components/common/Preloader/Preloader";
 import store from "./redux/redux-store";
+import withSuspense from "./components/hok/withSuspense";
+
+//const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
+const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer'));
+const UsersContainer = lazy(() => import('./components/Users/UsersContainer'));
 
 class App extends Component {
     componentDidMount() {
@@ -31,14 +37,16 @@ class App extends Component {
                 <Navbar /*sidebar={props.state.sidebar} *//>
                 <div className='app-wrapper-content'>
                     <Route path='/dialogs'
-                           render={() => <DialogsContainer/>}
+                           render={withSuspense(DialogsContainer)}
                     />
                     <Route path='/profile/:userId?'
                            render={() => <ProfileContainer/>}
                     />
-                    <Route path='/users'
-                           render={() => <UsersContainer/>}
-                    />
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <Route path='/users'
+                               render={() => <UsersContainer/>}
+                        />
+                    </Suspense>
                     <Route path='/login'
                            render={() => <Login/>}
                     />
@@ -58,15 +66,21 @@ const mapStateToProps = (state) => {
 }
 
 
-let ContainerApp =  compose(
-    connect(mapStateToProps, {initializeApp})(App));
+let ContainerApp = compose(
+    connect(mapStateToProps,
+        {
+            initializeApp
+        }
+    )(App));
 
 const SocialNetworkApp = (props) => {
     return (
         <BrowserRouter>
+
             <Provider store={store}>
                 <ContainerApp/>
             </Provider>
+
         </BrowserRouter>
     )
 }
