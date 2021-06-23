@@ -4,6 +4,7 @@ import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import withAuthRedirect from "../hok/withAuthRedirect";
 import {compose} from "redux";
+import { withRouter } from "react-router";
 
 
 const mapStateToProps = (state) => {

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import style from './ProfileInfo.module.css'
 import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatusWithHooks from "./ProfileStatus/ProfileStatusWithHooks";
+import defaultAvatar from "../../../assets/images/images.png"
 
 const ProfileInfo = (props) => {
 
@@ -18,7 +19,7 @@ const ProfileInfo = (props) => {
             <div>
             <div className={style.profileContainer}>
                 <div className={style.avatar}>
-                    <img src={props.profile.photos.large}/>
+                    <img src={props.profile.photos.large || defaultAvatar}/>
                 </div>
                 <div className={style.descriptionBlock}>
                     <div>

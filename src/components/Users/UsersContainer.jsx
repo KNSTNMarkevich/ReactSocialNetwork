@@ -23,16 +23,17 @@ import {
 class UsersContainer extends React.Component {
 
     componentDidMount() {
+
         const {currentPage, pageSize} = this.props;
         this.props.getUsers(currentPage,pageSize)
     }
+
     onPageChanged = (pageNumber) => {
         this.props.setCurrentPage(pageNumber);
         this.props.getUsers(pageNumber,this.props.pageSize)
     }
 
     render() {
-
         return (
             <>
                 {this.props.isFetching ? <Preloader />: null}
