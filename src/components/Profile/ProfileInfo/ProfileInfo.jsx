@@ -12,6 +12,12 @@ const ProfileInfo = (props) => {
         return <Preloader/>
     }
 
+    const onMainPhotoUpdate = (e) => {
+        if(e.target.files.length){
+            props.updatePhoto(e.target.files[0])
+        }
+    }
+
     return (
         <div>
             {/*<div>*/}
@@ -21,6 +27,9 @@ const ProfileInfo = (props) => {
             <div className={style.profileContainer}>
                 <div className={style.avatar}>
                     <img src={props.profile.photos.large || defaultAvatar}/>
+                    {
+                        props.isOwner && <input type={"file"} onChange={onMainPhotoUpdate}/>
+                    }
                 </div>
                 <div className={style.descriptionBlock}>
                     <div>

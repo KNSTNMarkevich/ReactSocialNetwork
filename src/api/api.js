@@ -35,12 +35,22 @@ export const profileAPI = {
         return instance.get(`profile/${userId}`)
             .then(response => response.data)
     },
-      getStatus(userId){
+    getStatus(userId) {
         return instance.get(`profile/status/${userId}`)
             .then(response => response.data)
     },
-    updateStatus(status){
+    updateStatus(status) {
         return instance.put(`profile/status`, {status: status})
+            .then(response => response.data)
+    },
+    updatePhoto(file) {
+        const formData = new FormData();
+        formData.append("image", file);
+        return instance.put(`profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
             .then(response => response.data)
     }
 }
