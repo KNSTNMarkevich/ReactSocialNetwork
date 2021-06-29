@@ -4,7 +4,7 @@ import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatusWithHooks from "./ProfileStatus/ProfileStatusWithHooks";
 import defaultAvatar from "../../../assets/images/images.png"
 import ProfileData from "./ProfileData/ProfileData"
-import ProfileDataForm, {ProfileDataReduxForm} from "./ProfileDataForm/ProfileDataForm";
+import {ProfileDataReduxForm} from "./ProfileDataForm/ProfileDataForm";
 
 const ProfileInfo = (props) => {
     let [editMode, setEditMode] = useState(false)
@@ -15,6 +15,11 @@ const ProfileInfo = (props) => {
 
     const diactivateEditMode = () => {
         setEditMode(false)
+    }
+
+    const onSubmit = (values) => {
+        props.updateProfile(values);
+        diactivateEditMode()
     }
 
     if (!props.profile) {
@@ -37,7 +42,7 @@ const ProfileInfo = (props) => {
                 <div className={style.descriptionBlock}>
                     {editMode
                         ?
-                        <ProfileDataReduxForm profile={props.profile} diactivateEditMode={diactivateEditMode}/>
+                        <ProfileDataReduxForm onSubmit={onSubmit} profile={props.profile} diactivateEditMode={diactivateEditMode}/>
                         :
                         <ProfileData profile={props.profile} isOwner={props.isOwner} activateEditMode={activateEditMode}/>}
                     <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>

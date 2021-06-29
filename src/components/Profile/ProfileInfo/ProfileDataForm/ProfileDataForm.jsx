@@ -11,8 +11,10 @@ const ProfileDataForm = (props) => {
     return (
         <div>
             <form onSubmit={props.handleSubmit}>
-                <button onClick={props.diactivateEditMode}>save</button>
+                <button type="submit">save</button>
                 <div>
+                    <Field component={Input} name="fullName"
+                           validate={[required]} props={props.profile.fullName}/>
                     {props.profile.fullName}
                 </div>
                 <div>
@@ -40,5 +42,5 @@ const ProfileDataForm = (props) => {
 
 
 export const ProfileDataReduxForm = reduxForm({
-    form: 'login'
+    form: 'profileUpdateForm'
 })(ProfileDataForm)

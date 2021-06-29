@@ -2,6 +2,7 @@ import {profileAPI} from "../api/api";
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const UPDATE_USER_PROFILE = 'UPDATE_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 const DELETE_POST = 'DELETE_POST';
 const SET_PHOTO = 'SET_PHOTO';
@@ -34,6 +35,12 @@ const profileReducer = (state = initialState, action) => {
                 profile: action.profile
             }
         }
+        case UPDATE_USER_PROFILE: {
+            return {
+                ...state,
+                profile: action.profile
+            }
+        }
         case SET_STATUS: {
             return {
                 ...state,
@@ -47,7 +54,6 @@ const profileReducer = (state = initialState, action) => {
             }
         }
         case SET_PHOTO: {
-            debugger;
             return {
                 ...state,
                 profile: {
@@ -80,6 +86,10 @@ export const SetUserStatus = (status) => {
     return {type: SET_STATUS, status}
 }
 
+export const UpdateUserProfile = (profile) => {
+    return {type: SET_STATUS, profile}
+}
+
 export const SetUserPhoto = (photos) => {
     debugger;
     return {type: SET_PHOTO, photos}
@@ -107,6 +117,13 @@ export const updateUserPhoto = (file) => async (dispatch) => {
     const data = await profileAPI.updatePhoto(file)
     if (data.resultCode === 0) {
         dispatch(SetUserPhoto(data.data.photos))
+    }
+}
+
+export const updateUserProfile = (profile) => async (dispatch) => {
+    const data = await profileAPI.updateProfile(profile)
+    if (data.resultCode === 0) {
+        dispatch(SetUserProfile(data))
     }
 }
 
