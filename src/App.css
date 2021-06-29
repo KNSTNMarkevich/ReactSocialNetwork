@@ -1,7 +1,7 @@
 .app-wrapper {
     margin: 0 auto;
     display: grid;
-    max-width: 1200px;
+    max-width: 1280px;
     grid-template-areas:
   "h h"
   "n c";
@@ -13,6 +13,9 @@
 
 .app-wrapper-content {
     grid-area: c;
+    /*
     background-color: #BBBEBE;
+    */
+    background-color: #CCCDCE;
 }
 

@@ -1,12 +1,21 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import style from './ProfileInfo.module.css'
 import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatusWithHooks from "./ProfileStatus/ProfileStatusWithHooks";
 import defaultAvatar from "../../../assets/images/images.png"
 import ProfileData from "./ProfileData/ProfileData"
+import ProfileDataForm, {ProfileDataReduxForm} from "./ProfileDataForm/ProfileDataForm";
 
 const ProfileInfo = (props) => {
+    let [editMode, setEditMode] = useState(false)
 
+    const activateEditMode = () => {
+        setEditMode(true)
+    }
+
+    const diactivateEditMode = () => {
+        setEditMode(false)
+    }
 
     if (!props.profile) {
         return <Preloader/>
@@ -23,12 +32,14 @@ const ProfileInfo = (props) => {
             <div className={style.profileContainer}>
                 <div className={style.avatar}>
                     <img src={props.profile.photos.large || defaultAvatar}/>
-                    {
-                        props.isOwner && <input type={"file"} onChange={onMainPhotoUpdate}/>
-                    }
+                    {props.isOwner && <input type={"file"} onChange={onMainPhotoUpdate}/>}
                 </div>
                 <div className={style.descriptionBlock}>
-                    <ProfileData profile={props.profile}/>
+                    {editMode
+                        ?
+                        <ProfileDataReduxForm profile={props.profile} diactivateEditMode={diactivateEditMode}/>
+                        :
+                        <ProfileData profile={props.profile} isOwner={props.isOwner} activateEditMode={activateEditMode}/>}
                     <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
                 </div>
             </div>

@@ -16,7 +16,6 @@ import Preloader from "./components/common/Preloader/Preloader";
 import store from "./redux/redux-store";
 import withSuspense from "./components/hok/withSuspense";
 
-//const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer'));
 const UsersContainer = lazy(() => import('./components/Users/UsersContainer'));
 

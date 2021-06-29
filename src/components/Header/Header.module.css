@@ -1,6 +1,7 @@
 .header {
     grid-area: h;
-    background-color: rgb(38, 41, 49);
+  /*  background-color: rgb(38, 41, 49);*/
+    background-color: #EEF0F3;
     color: white;
 }
 
@@ -14,8 +15,12 @@
       width: 20px;
 }
 
+.login {
+    color: black;
+}
+
 .login a {
     text-decoration: none;
     font-weight: bold;
-    color: white;
+    color: black;
 }

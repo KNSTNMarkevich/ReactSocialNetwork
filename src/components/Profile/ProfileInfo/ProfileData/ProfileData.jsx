@@ -6,6 +6,7 @@ const ProfileData = (props) => {
 
     return (
         <div>
+            {props.isOwner && <button onClick={props.activateEditMode}>Change</button>}
             <div>
                 {props.profile.fullName}
             </div>
