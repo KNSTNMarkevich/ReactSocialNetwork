@@ -17,10 +17,12 @@ const LoginForm = (props) => {
             <div>
                 <Field component="input" type="checkbox" name="rememberMe"/> remember me
             </div>
-            { props.error &&
+            {
+                props.error &&
             <div className={style.loginError}>
                 {props.error}
-            </div> }
+            </div>
+            }
             <div>
                 <button type="submit">LOGIN</button>
             </div>

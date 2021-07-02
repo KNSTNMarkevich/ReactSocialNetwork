@@ -9,17 +9,12 @@ import {ProfileDataReduxForm} from "./ProfileDataForm/ProfileDataForm";
 const ProfileInfo = (props) => {
     let [editMode, setEditMode] = useState(false)
 
-    const activateEditMode = () => {
-        setEditMode(true)
-    }
-
-    const diactivateEditMode = () => {
-        setEditMode(false)
-    }
-
     const onSubmit = (values) => {
-        props.updateProfile(values);
-        diactivateEditMode()
+        props.updateProfile(values).then(
+            () => {
+                setEditMode(false)
+            }
+        );
     }
 
     if (!props.profile) {
@@ -42,9 +37,10 @@ const ProfileInfo = (props) => {
                 <div className={style.descriptionBlock}>
                     {editMode
                         ?
-                        <ProfileDataReduxForm onSubmit={onSubmit} profile={props.profile} diactivateEditMode={diactivateEditMode}/>
+                        <ProfileDataReduxForm onSubmit={onSubmit} initialValues={props.profile}
+                                              profile={props.profile}/>
                         :
-                        <ProfileData profile={props.profile} isOwner={props.isOwner} activateEditMode={activateEditMode}/>}
+                        <ProfileData profile={props.profile} isOwner={props.isOwner} setEditMode={setEditMode}/>}
                     <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
                 </div>
             </div>

@@ -6,7 +6,7 @@ const ProfileData = (props) => {
 
     return (
         <div>
-            {props.isOwner && <button onClick={props.activateEditMode}>Change</button>}
+            {props.isOwner && <button onClick={() => {props.setEditMode(true)}}>Change</button>}
             <div>
                 {props.profile.fullName}
             </div>
@@ -21,7 +21,7 @@ const ProfileData = (props) => {
             </div>
             <div className={style.contacts}>
                 <b>Contacts: </b> {Object.keys(props.profile.contacts).map(key => {
-                return <Contacts contactTitle={key} contactValue={props.profile[key]}/>
+                return <Contacts key={key} contactTitle={key} contactValue={props.profile.contacts[key]}/>
             })}
             </div>
         </div>

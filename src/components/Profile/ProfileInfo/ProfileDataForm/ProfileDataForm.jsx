@@ -1,20 +1,25 @@
 import React, {Component} from 'react';
-import style from "../ProfileData/ProfileData.module.css";
 import Contacts from "../ProfileData/Contacts";
 import {Field, reduxForm} from "redux-form";
 import {Checkbox, Input, Textarea} from "../../../common/FormsControls/FormsControls";
 import {required} from "../../../../utils/validators/validators";
+import style from "../../../common/FormsControls/FormsControls.module.css"
 
 
 const ProfileDataForm = (props) => {
-
     return (
         <div>
             <form onSubmit={props.handleSubmit}>
                 <button type="submit">save</button>
+                {
+                    props.error &&
+                    <div className={style.loginError}>
+                        {props.error}
+                    </div>
+                }
                 <div>
                     <Field component={Input} name="fullName"
-                           validate={[required]} props={props.profile.fullName}/>
+                           validate={[required]} />
                     {props.profile.fullName}
                 </div>
                 <div>
@@ -22,8 +27,7 @@ const ProfileDataForm = (props) => {
                                             validate={[required]}/>
                 </div>
                 <div>
-                    <b>Looking for a job:</b> <Field component={Checkbox} name="lookingForAJob"
-                                                     validate={[required]}/>
+                    <b>Looking for a job:</b> <Field component={Checkbox} name="lookingForAJob"/>
                 </div>
                 <div>
                     <b>Looking for a job description:</b> <Field component={Textarea} name="lookingForAJobDescription"
@@ -31,7 +35,9 @@ const ProfileDataForm = (props) => {
                 </div>
                 <div className={style.contacts}>
                     <b>Contacts: </b> {Object.keys(props.profile.contacts).map(key => {
-                    return <Contacts contactTitle={key} contactValue={props.profile[key]}/>
+                    return <div>
+                        {key} <Field component={Input} name={"contacts." + key}/>
+                    </div>
                 })}
                 </div>
             </form>
@@ -39,7 +45,14 @@ const ProfileDataForm = (props) => {
 
     );
 }
+/*
 
+<div className={style.contacts}>
+    <b>Contacts: </b> {Object.keys(props.profile.contacts).map(key => {
+    return <Contacts contactTitle={key} contactValue={props.profile[key]}/>
+})}
+</div>
+*/
 
 export const ProfileDataReduxForm = reduxForm({
     form: 'profileUpdateForm'
