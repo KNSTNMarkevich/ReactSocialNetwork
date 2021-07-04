@@ -8,6 +8,7 @@ import {login} from "../../redux/auth-reducer";
 class LoginContainer extends React.Component {
 
     render() {
+        debugger;
         return (
             <Login  {...this.props}/>
         );
@@ -17,7 +18,8 @@ class LoginContainer extends React.Component {
 let MapStateToProps = (state) => ({
     userId: state.auth.userId,
     email: state.auth.email,
-    password: state.auth.password
+    password: state.auth.password,
+
 });
 
 export default compose(

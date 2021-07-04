@@ -7,8 +7,9 @@ import {Redirect} from "react-router-dom";
 
 
 const Login = (props) => {
+    debugger;
     const onSubmit = values => {
-        props.login(values.email, values.password, values.rememberMe)
+        props.login(values.email, values.password, values.rememberMe, values.captcha)
     }
 
     if(props.isAuth) {
@@ -18,13 +19,14 @@ const Login = (props) => {
     return (
         <div>
             <div className={style.login}>LOGIN</div>
-            <ReduxLoginForm onSubmit={onSubmit}/>
+            <ReduxLoginForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/>
         </div>
     )
 }
 
 const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    captchaUrl: state.auth.captchaUrl
 })
 
 export default connect(mapStateToProps, {login})(Login);

@@ -120,6 +120,7 @@ export const updateUserPhoto = (file) => async (dispatch) => {
     }
 }
 
+
 export const updateUserProfile = (profile) => async (dispatch, getState) => {
     debugger;
     const userId = getState().auth.userId

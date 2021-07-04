@@ -4,6 +4,7 @@ import {required} from "../../../utils/validators/validators";
 import style from "../../common/FormsControls/FormsControls.module.css"
 
 const LoginForm = (props) => {
+    debugger;
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -17,6 +18,8 @@ const LoginForm = (props) => {
             <div>
                 <Field component="input" type="checkbox" name="rememberMe"/> remember me
             </div>
+            {props.captchaUrl && <img src={props.captchaUrl} />}
+            {props.captchaUrl && <Field component={Input} name="captcha" validate={[required]}/>}
             {
                 props.error &&
             <div className={style.loginError}>
