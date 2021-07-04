@@ -5,6 +5,7 @@ import ProfileStatusWithHooks from "./ProfileStatus/ProfileStatusWithHooks";
 import defaultAvatar from "../../../assets/images/images.png"
 import ProfileData from "./ProfileData/ProfileData"
 import {ProfileDataReduxForm} from "./ProfileDataForm/ProfileDataForm";
+import ErrorNotification from "../../common/ErrorNotification/ErrorNotification";
 
 const ProfileInfo = (props) => {
     let [editMode, setEditMode] = useState(false)
@@ -42,8 +43,11 @@ const ProfileInfo = (props) => {
                         :
                         <ProfileData profile={props.profile} isOwner={props.isOwner} setEditMode={setEditMode}/>}
                     <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+
                 </div>
+
             </div>
+            {props.errorMessage && <ErrorNotification errorMessage={props.errorMessage}/>}
         </div>
     );
 }
