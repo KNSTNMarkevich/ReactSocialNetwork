@@ -29,28 +29,36 @@ class App extends Component {
             return <Preloader/>
         }
         return (
+            <div className='app-container'>
             <div className='app-wrapper'>
-                <HeaderContainer/>
-                <Navbar /*sidebar={props.state.sidebar} *//>
-                <div className='app-wrapper-content'>
-                    <Route path='/dialogs'
-                           render={withSuspense(DialogsContainer)}
-                    />
-                    <Route path='/profile/:userId?'
-                           render={() => <ProfileContainer/>}
-                    />
-                    <Suspense fallback={<div>Loading...</div>}>
-                        <Route path='/users'
-                               render={() => <UsersContainer/>}
-                        />
-                    </Suspense>
-                    <Route path='/login'
-                           render={() => <Login/>}
-                    />
-                    <Route path='/news' render={() => <News/>}/>
-                    <Route path='/music' render={() => <Music/>}/>
-                    <Route path='/settings' render={() => <Settings/>}/>
+                <div className='header-wrapper'>
+                    <HeaderContainer/>
                 </div>
+                <div className='main-app-wrapper'>
+                    <div className='navbar-container'>
+                        <Navbar /*sidebar={props.state.sidebar} *//>
+                    </div>
+                    <div className='app-wrapper-content'>
+                        <Route path='/dialogs'
+                               render={withSuspense(DialogsContainer)}
+                        />
+                        <Route path='/profile/:userId?'
+                               render={() => <ProfileContainer/>}
+                        />
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <Route path='/users'
+                                   render={() => <UsersContainer/>}
+                            />
+                        </Suspense>
+                        <Route path='/login'
+                               render={() => <Login/>}
+                        />
+                        <Route path='/news' render={() => <News/>}/>
+                        <Route path='/music' render={() => <Music/>}/>
+                        <Route path='/settings' render={() => <Settings/>}/>
+                    </div>
+                </div>
+            </div>
             </div>
         );
     }

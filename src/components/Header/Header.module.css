@@ -1,8 +1,11 @@
 .header {
+    /*
     grid-area: h;
+    */
   /*  background-color: rgb(38, 41, 49);*/
     background-color: #EEF0F3;
-    color: white;
+    width: 1280px;
+    height: 50px;
 }
 
 .headerContainer{
